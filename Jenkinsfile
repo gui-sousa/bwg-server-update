@@ -28,18 +28,37 @@ pipeline {
 
   post {
       success {
-           hangoutsNotify message: "✅ Deu Certo!\n⏰ Tempo de Duração: ${currentBuild.duration / 1000} segundos", token: "$CHAT_TOKEN", threadByJob: false
-           emailext to: "gsousa@bwg.com.br",
-           subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}",
-           from: "jenkins@bwg.com.br",
-           body: "${currentBuild.result}: ${BUILD_URL}",
-           attachLog: true,
-           compressLog: true
+           hangoutsNotify {
+                message: "✅ Deu Certo!\n⏰ Tempo de Duração: ${currentBuild.duration / 1000} segundos", 
+                token: "$CHAT_TOKEN", 
+                threadByJob: false
+           }
+
+           emailext { 
+                to: "gsousa@bwg.com.br",
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}",
+                from: "jenkins@bwg.com.br",
+                body: "${currentBuild.result}: ${BUILD_URL}",
+                attachLog: true,
+                compressLog: true
+           }
 
         }
 
        failure {
-           hangoutsNotify message: "❌ Deu Errado!\n⏰ Tempo de Duração: ${currentBuild.duration / 1000} segundos", token: "$CHAT_TOKEN", threadByJob: false 
+           hangoutsNotify {
+                message: "❌ Deu Errado!\n⏰ Tempo de Duração: ${currentBuild.duration / 1000} segundos", 
+                token: "$CHAT_TOKEN", 
+                threadByJob: false 
+        
+           emailext { 
+                to: "gsousa@bwg.com.br",
+                subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}",
+                from: "jenkins@bwg.com.br",
+                body: "${currentBuild.result}: ${BUILD_URL}",
+                attachLog: true,
+                compressLog: true
+           }
         }
     }  
 }
