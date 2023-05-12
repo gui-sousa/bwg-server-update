@@ -46,6 +46,8 @@ pipeline {
     stage('Testando Portais') {
       steps {
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/.net/index.ashx/GetPublicLinks", validResponseCodes: '200', validResponseContent: '"success":true'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://messer.meuportalrh.com.br/site/.net/index.ashx/GetPublicLinks", validResponseCodes: '200', validResponseContent: '"success":true'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.4bee.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'Entrar'
       }  
     }
 
