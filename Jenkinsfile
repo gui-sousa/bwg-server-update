@@ -48,7 +48,7 @@ pipeline {
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/.net/index.ashx/GetPublicLinks", validResponseCodes: '200', validResponseContent: '"success":true'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://messer.meuportalrh.com.br/site/.net/index.ashx/GetPublicLinks", validResponseCodes: '200', validResponseContent: '"success":true'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.4bee.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'Entrar'
-        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.novacoop.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'Olá, sócio cooperado!'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.novacoop.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'OlÃ¡, sÃ³cio cooperado!'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/", validResponseCodes: '200', validResponseContent: 'Entrar no portal'
       }  
     }
