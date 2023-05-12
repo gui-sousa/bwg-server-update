@@ -32,7 +32,7 @@ pipeline {
            emailext to: "gsousa@bwg.com.br",
            subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}",
            from: "jenkins@bwg.com.br",
-           body: "${currentBuild.result}: ${BUILD_URL}"
+           body: "${currentBuild.result}: ${BUILD_URL}",
            compressLog: true
 
         }
