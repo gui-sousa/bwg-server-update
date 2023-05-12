@@ -1,6 +1,10 @@
 pipeline {
     
   agent any
+
+  environment {
+       CHAT_TOKEN = credentials('google-chat-guisousa')
+    }  
   
   stages {
     stage('Atualizando Código') {
