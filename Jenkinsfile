@@ -27,7 +27,7 @@ pipeline {
 
     stage('Aprovação') {
         steps {
-          inputs "Deseja continuar para os servidores de Aplicação?"
+          input "Deseja continuar para os servidores de Aplicação?"
         }
     }
 
