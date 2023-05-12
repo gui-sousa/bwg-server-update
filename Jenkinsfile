@@ -19,11 +19,18 @@ pipeline {
         }
     }
     
-    stage('Deploy') {
+    stage('Atualizando Servidores de Banco de Dados') {
       steps {
-        sh 'ansible-playbook -i hosts.ini playbook.yaml -vvv'
+        sh 'ansible-playbook -i hosts.ini bd-playbook.yaml -vvv'
       }
     }
+
+    stage('Atualizando Servidores de Aplicação') {
+      steps {
+        sh 'ansible-playbook -i hosts.ini prod-playbook.yaml -vvv'
+      }
+    }
+
   }
 
   post {
