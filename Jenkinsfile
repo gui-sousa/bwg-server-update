@@ -21,7 +21,7 @@ pipeline {
     
     stage('Deploy') {
       steps {
-        sh 'ansible-playbook -i hosts.ini playbook.yaml'
+        sh 'ansible-playbook -i hosts.ini playbook.yaml -vvv'
       }
     }
   }
