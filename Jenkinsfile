@@ -33,6 +33,7 @@ pipeline {
            subject: "Build Notification: ${JOB_NAME}-Build# ${BUILD_NUMBER} ${currentBuild.result}",
            from: "jenkins@bwg.com.br",
            body: "${currentBuild.result}: ${BUILD_URL}",
+           attachLog: true,
            compressLog: true
 
         }
