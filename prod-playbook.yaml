@@ -1,19 +1,13 @@
 ---
-- name: Windows Update - Teste
+- name: Windows Update Aplicação - Teste
   hosts: prod
 
   tasks:
-#  - name: Instala todos os updates e reinicia
-#    ansible.windows.win_updates:
-#     category_names: '*'
-#     reboot: yes
-     #     retries: 5
-
-  - name: Create test folder
-    ansible.windows.win_file:
-      path: C:\test.txt
-      state: touch
-
-#  - name: Reiniciar máquina
-#    win_reboot:
-#      reboot_timeout: 600
+  - name: Instala todos os updates e reinicia
+    ansible.windows.win_updates:
+     category_names: '*'
+     reboot: yes
+#      retries: 5
+  - name: Reiniciar máquina
+    win_reboot:
+      reboot_timeout: 600
