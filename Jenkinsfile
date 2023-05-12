@@ -29,12 +29,24 @@ pipeline {
         steps {
           input "Deseja continuar para os servidores de Aplicação?"
         }
+
+        post {
+            always {
+                hangoutsNotify message: "✅ Atualização dos Servidores de Banco de Dados Concluida!\n🤖 Aguarando Aprovação para Prosseguimento\n⏰ Tempo decorrido: $BUILD_TIMESTAMP", token: "$CHAT_TOKEN", threadByJob: false
+            }
+        }
     }
 
     stage('Atualizando Servidores de Aplicação') {
       steps {
         sh 'ansible-playbook -i hosts.ini prod-playbook.yaml -vvv'
       }
+    }
+
+    stage('Testando Portais') {
+      steps {
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/.net/index.ashx/GetPublicLinks", validResponseCodes: '200', validResponseContent: '"success":true'
+      }  
     }
 
   }
