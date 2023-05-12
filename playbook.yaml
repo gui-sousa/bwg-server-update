@@ -1,6 +1,6 @@
 ---
 - name: Windows Update - Teste
-  hosts: bd
+  hosts: prod
 
   tasks:
 #  - name: Instala todos os updates e reinicia
