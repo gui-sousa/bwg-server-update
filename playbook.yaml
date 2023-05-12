@@ -11,7 +11,7 @@
 
   - name: Create test folder
     ansible.windows.win_file:
-      path: C:\Users\gsousa\Desktop\test.txt
+      path: C:\test.txt
       state: touch
 
 #  - name: Reiniciar máquina
