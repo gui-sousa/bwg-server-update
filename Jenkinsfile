@@ -25,6 +25,12 @@ pipeline {
       }
     }
 
+    stage('Aprovação') {
+        steps {
+          inputs "Deseja continuar para os servidores de Aplicação?"
+        }
+    }
+
     stage('Atualizando Servidores de Aplicação') {
       steps {
         sh 'ansible-playbook -i hosts.ini prod-playbook.yaml -vvv'
