@@ -31,7 +31,6 @@ pipeline {
            hangoutsNotify message: "✅ Deu Certo!\n⏰ Tempo de Duração: ${currentBuild.duration / 1000} segundos", token: "$CHAT_TOKEN", threadByJob: false
            emailext to: "gsousa@bwg.com.br",
            from: "jenkins@bwg.com.br",
-           subject: "Teste",
            body: '${BUILD_LOG, maxLines=999999}'
 
         }
