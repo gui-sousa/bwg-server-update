@@ -8,6 +8,6 @@
      category_names: '*'
      reboot: yes
 #      retries: 5
-  - name: Reiniciar máquina
-    win_reboot:
-      reboot_timeout: 600
+#  - name: Reiniciar máquina
+#    win_reboot:
+#      reboot_timeout: 600
