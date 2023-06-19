@@ -1,0 +1,84 @@
+---
+- name: Servicos BALANCER
+  hosts: balancer
+  
+  tasks:
+  - name: Start Apserver Balancer
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{service_state}}"
+    retries: 5
+    delay: 30
+    loop: 
+    - ApESocialMsg_10SERVICE
+    - ApESocialMsg_11SERVICE
+    - ApESocialMsg_1SERVICE
+    - ApESocialMsg_20SERVICE
+
+- name: Servicos BAGDA
+  hosts: bagda
+  
+  tasks:
+  - name: Start Apserver Bagda
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{service_state}}"
+    retries: 5
+    delay: 30
+    loop: 
+#    - ApAgentService_Messer_Producao_Agent_InstanceService
+    - apintegration_rest.exe
+
+- name: Servicos KOTOR
+  hosts: kotor
+  
+  tasks:
+  - name: Start Apserver Kotor
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{service_state}}"
+    retries: 5
+    delay: 30
+    loop: 
+    - ApESocialMsg_1SERVICE
+    - ApESocialMsg_2SERVICE
+    - ApESocialMsg_3SERVICE
+    - ApESocialMsg_4SERVICE
+
+- name: Servicos LONDON
+  hosts: london
+  
+  tasks:
+  - name: Start Apserver London
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{service_state}}"
+    retries: 5
+    delay: 30
+    loop: 
+    - ApIntegrationServer_Producao_InstanceService
+    - ApIntegrationServer_ConexaoSaude_Producao_InstanceService
+    - ApIntegrationServer_COOP_InstanceService
+    - ApIntegrationServer_Messer_Producao_17500_InstanceService
+    - ApIntegrationServer_Ushin_InstanceService
+
+- name: Servicos LONDON2
+  hosts: london2
+  
+  tasks:
+  - name: Start Apserver London2
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: "{{service_state}}"
+    retries: 5
+    delay: 30
+    loop: 
+    - ApAgentService_Producao_Single_Agent_InstanceService
+    - ApIntegrationServer_DEV_TICKET_8850_InstanceService
+    - ApIntegrationServer_Nova_Coop_Integration_InstanceService
+    - ApIntegrationServer_Qualidade_InstanceService
+    - ApIntegrationServer_ApIntegration_Messer_Homolog_17001_InstanceService
+
+    
+
+

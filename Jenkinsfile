@@ -21,7 +21,8 @@ pipeline {
     
     stage('Atualizando Servidores de Banco de Dados') {
       steps {
-        sh 'ansible-playbook -i hosts.ini bd-playbook.yaml -vvv'
+        sh 'ansible-playbook -i winUpdate-hosts.ini bd-playbook.yaml -vvv'
+        sh 'ansible-playbook -i winUpdate-hosts.ini bd-playbook.yaml -vvv'
       }
     }
 
@@ -39,9 +40,25 @@ pipeline {
 
     stage('Atualizando Servidores de Aplicação') {
       steps {
-        sh 'ansible-playbook -i hosts.ini prod-playbook.yaml -vvv'
+        sh 'ansible-playbook -i winUpdate-hosts.ini prod-playbook.yaml -vvv'
+        sh 'ansible-playbook -i winUpdate-hosts.ini prod-playbook.yaml -vvv'
       }
     }
+
+    stage('Iniciando serviços ApServers') {
+      steps {
+        sh 'ansible-playbook -i /restart-winservices/winUpdate-hosts.ini /restart-winservices/apServer-playbook.yaml -vvv'
+      }
+    }
+
+    stage('Iniciando demais serviços') {
+      steps {
+        sh 'ansible-playbook -i /restart-winservices/winUpdate-hosts.ini /restart-winservices/apIntegration-playbook.yaml --extra-vars "service_state=start" -vvv'
+        sh 'ansible-playbook -i /restart-winservices/winUpdate-hosts.ini /restart-winservices/apIntegration-playbook.yaml --extra-vars "service_state=restart" -vvv'
+      }
+    }
+
+    
 
     stage('Testando Portais') {
       steps {
@@ -50,6 +67,8 @@ pipeline {
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.4bee.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'Entrar'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://folha.novacoop.com.br/4beeFopag/servlet/generic.LoginServlet#/home", validResponseCodes: '200', validResponseContent: 'OlÃ¡, sÃ³cio cooperado!'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/", validResponseCodes: '200', validResponseContent: 'main.html'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "http://10.1.85.10:17881/wsdl/IApWebServices", validResponseCodes: '200', validResponseContent: 'This XML file'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "http://10.1.85.6:9050/wsdl/IApWebServices", validResponseCodes: '200', validResponseContent: 'This XML file'
       }  
     }
 

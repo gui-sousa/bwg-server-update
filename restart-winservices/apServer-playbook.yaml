@@ -1,0 +1,111 @@
+---
+- name: Servicos BALANCER
+  hosts: balancer
+  
+  tasks:
+  - name: Start Apserver Balancer
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: started
+    retries: 5
+    delay: 30
+    loop: 
+    - ApServer_ConexaoSaude_Mensageria_InstanceService
+    - ApServer_Mensageria_559_Producao_InstanceService
+    - ApServer_NovaCooperativa_Mensageria_InstanceService
+    - Apdata Application Server - ConexaoSaude_Mensageria
+    - ApLoadBalancerServer_GA_PRODUCAO_InstanceService
+    - ApLoadBalancerServer_Messer_PRD_35000_InstanceService
+    - ApLoadBalancerServer_NovaCoop_PRD_35200_InstanceService
+    - ApLoadBalancerServer_NovaCoop_PRD_35300_InstanceService
+
+- name: Servicos BAGDA
+  hosts: bagda
+  
+  tasks:
+  - name: Start Apserver Bagda
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: started
+    retries: 5
+    delay: 30
+    loop: 
+    - ApServer_25100_Suhai_InstanceService
+    - ApServer_Messer_Producao_22000_InstanceService
+    - ApServer_Messer_Producao_22001_InstanceService
+    - ApServer_MT_PRODUCAO_WEB_9100_InstanceService
+    - ApServer_NOVA_COOP_PRD_WEB_01_InstanceService
+    - ApServer_NOVA_COOP_PRD_WEB_02_InstanceService
+
+- name: Servicos KOTOR
+  hosts: kotor
+  
+  tasks:
+  - name: Start Apserver Kotor
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: started
+    retries: 5
+    delay: 30
+    loop: 
+    - ApAccessServer_1SERVICE
+    - ApAccessServer_2SERVICE
+    - ApServer_7100_Suhai_InstanceService
+    - ApServer_27110_Suhai_Mensageria_InstanceService
+    - ApServer_28000_Messer_Mensageria_InstanceService
+    - ApServer_ApServer_Producao_Single_Mensageria_8000_InstanceService
+
+- name: Servicos LONDON
+  hosts: london
+  
+  tasks:
+  - name: Start Apserver London
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: started
+    retries: 5
+    delay: 30
+    loop: 
+    - ApServer_BWG_GA_MT_InstanceService
+    - ApServer_BWG_GA_MT_2_InstanceService
+    - ApServer_ApServer_Producao_IbratiWEb2_7024_InstanceService
+    - ApServer_BWG_GA_MT_11_InstanceService
+    - ApServer_BWG_GA_MT_3_InstanceService
+    - ApServer_BWG_GA_MT_4_InstanceService
+    - ApServer_BWG_GA_MT_5_InstanceService
+    - ApServer_BWG_GA_MT_6_InstanceService
+    - ApServer_BWG_GA_MT_7_InstanceService
+    - ApServer_BWG_GA_MT_8_InstanceService
+    - ApServer_MESSER_PRODUCAO_26000_InstanceService
+    - ApServer_MESSER_PRODUCAO_26001_InstanceService
+    - ApServer_Producao_Complex_InstanceService
+    - ApServer_Producao_GA_ConexaSaude_InstanceService
+    - ApServer_Producao_GA_NovaCooperativa_559_InstanceService
+    - ApServer_Producao_Internos_CLT_InstanceService
+    - ApServer_Producao_Nseven_InstanceService
+    - ApServer_Producao_Provider_InstanceService
+    - ApServer_Producao_WS_InstanceService
+    - ApServer_Producao_GA_NovaCooperativa_559_InstanceService
+
+- name: Servicos LONDON2
+  hosts: london2
+  
+  tasks:
+  - name: Start Apserver London2
+    ansible.windows.win_service:
+      name: "{{ item }}"
+      state: started
+    retries: 5
+    delay: 30
+    loop: 
+    - ApServer_MT_TICKET_DEV_InstanceService
+    - ApServer_NOVA_COOP_PRD_01_InstanceService
+    - ApServer_NOVA_COOP_PRD_02_InstanceService
+    - ApServer_Producao_Single_7001_InstanceService
+    - ApServer_Producao_Single_7002_InstanceService
+    - ApServer_Producao_Single_7003_InstanceService
+    - ApServer_Producao_Single_7004_InstanceService
+
+    
+
+
