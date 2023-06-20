@@ -51,6 +51,14 @@ pipeline {
       }
     }
 
+    stage('Aguardando inicialização ApServers') {
+      steps {
+        script {
+            sleep(time: 600, unit: 'SECONDS')
+        }
+      }
+    }
+
     stage('Iniciando demais serviços') {
       steps {
         sh 'ansible-playbook -i /restart-winservices/winUpdate-hosts.ini /restart-winservices/apIntegration-playbook.yaml --extra-vars "service_state=start" -vvv'
@@ -69,6 +77,7 @@ pipeline {
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "https://meuportalrh.com.br/site/", validResponseCodes: '200', validResponseContent: 'main.html'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "http://10.1.85.10:17881/wsdl/IApWebServices", validResponseCodes: '200', validResponseContent: 'This XML file'
         httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "http://10.1.85.6:9050/wsdl/IApWebServices", validResponseCodes: '200', validResponseContent: 'This XML file'
+        httpRequest consoleLogResponseBody: true, responseHandle: 'NONE', url: "http://10.1.85.6:8060/soap/IApWebServices", validResponseCodes: '200', validResponseContent: 'WSDL'
       }  
     }
 
